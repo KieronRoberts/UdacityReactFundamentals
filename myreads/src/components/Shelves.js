@@ -12,12 +12,11 @@ const Shelves = ({books, updateBookShelf}) => {
     return (
         <div>
             {/*Uses shelf component and above defined filters to buid each shelf*/}
-            <Shelf title="Currently Reading" books={currentlyReading} updateBookShelf={updateBookShelf}/>
-            <Shelf title="Want To Read" books={whatToRead} updateBookShelf={updateBookShelf}/>
-            <Shelf title="Read" books={read} updateBookShelf={updateBookShelf}/>
+            <Shelf title="Books I am currently reading!" books={currentlyReading} updateBookShelf={updateBookShelf}/>
+            <Shelf title="Books I want to read!" books={whatToRead} updateBookShelf={updateBookShelf}/>
+            <Shelf title="Books I have read!" books={read} updateBookShelf={updateBookShelf}/>
         </div>
     )
-
 }
 /*Exports Shelves for use across the application*/
 export default Shelves;

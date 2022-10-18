@@ -15,7 +15,6 @@ const Shelf = ({ books, title, updateBookShelf }) => {
                             <Book book={b} changeBookShelf={updateBookShelf}/>
                         </li>
                     ))}
-
                 </ol>
             </div>
         </div>

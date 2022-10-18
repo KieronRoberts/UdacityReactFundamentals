@@ -89,7 +89,7 @@ const BooksApp = () => {
                 {/*Creates the search box*/}
                 <div className="search-books-input-wrapper">
                   {/*Produces a the search box with the placeholder "Search by title or author" and utilises setQuery when a input has been recieved*/}
-                  <input type="text" placeholder="Search by title or author" value={query} onChange={(e) => setQuery(e.target.value)} />
+                  <input type="text" classname="Tooltip" placeholder="Search by title or author" value={query} onChange={(e) => setQuery(e.target.value)} />
                 </div>
               </div>
               {/*Produces the view of books that have been recieved from the search*/}
