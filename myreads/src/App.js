@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
+/*Imports react-router-dom to allow the application to have multiple pages with different URLs*/
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+/*Imports Header to be used in this App.js*/
 import Header from './components/Header'
+/*Imports BooksAPI to be used in this App.js*/
 import * as BooksAPI from './BooksAPI'
+/*Imports App.css to minipulate*/
 import './App.css'
+/*Imports Shelves to be used in this App.js*/
 import Shelves from './components/Shelves'
+/*Imports Book to be used in this App.js*/
 import Book from './components/Book'
 import { useDebounce } from 'use-debounce';
-
+/*Imports useQuery to be used in this App.js*/
 import useQuery from './hooks/useQuery'
 
+/*Defines BooksApp*/
 const BooksApp = () => {
-
-  /* TODO: Instead of using this state variable to keep track of which page
-  * we're on, use the URL in the browser's address bar. This will ensure that
-  * users can use the browser's back and forward buttons to navigate between
-  * pages, as well as provide a good URL they can bookmark and share.
-  */
-
   const [books, setBooks] = useState([])
   const [mapOfIdToBooks, setMapOfIdToBooks] = useState(new Map());
 
@@ -48,13 +48,13 @@ const BooksApp = () => {
     setMergedBooks(combined);
   }, [searchBooks])
 
-
+  {/*Defines createMapOfBooks*/}
   const createMapOfBooks = (books) => {
     const map = new Map();
     books.map(book => map.set(book.id, book));
     return map;
   }
-
+  {/*Defines updateBookShelf*/}
   const updateBookShelf = (book, whereTo) => {
     const updatedBooks = books.map(b => {
       if (b.id === book.id) {
@@ -73,30 +73,28 @@ const BooksApp = () => {
 
   return (
     <div className="app">
+      {/*Wraps router around the application allowing the change of pages on URLs*/}
       <Router>
-
         <Switch>
-
-          {/* SEARCH */}
+          {/* SEARCH PAGE */}
+          {/*Defines what should be found on the URL path /search*/}
           <Route path="/search">
             <div className="search-books">
               <div className="search-books-bar">
+                {/*Creates the link back to the Main Page*/}
                 <Link to="/">
+                  {/*Produces the "Close" button on the search page*/}
                   <button className="close-search">Close</button>
                 </Link>
+                {/*Creates the search box*/}
                 <div className="search-books-input-wrapper">
-                  {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
+                  {/*Produces a the search box with the placeholder "Search by title or author" and utilises setQuery when a input has been recieved*/}
                   <input type="text" placeholder="Search by title or author" value={query} onChange={(e) => setQuery(e.target.value)} />
                 </div>
               </div>
+              {/*Produces the view of books that have been recieved from the search*/}
               <div className="search-books-results">
+                {/*Creates the list of the books from the search*/}
                 <ol className="books-grid">
                   {mergedBooks.map(b => (
                     <li key={b.id}>
@@ -109,15 +107,17 @@ const BooksApp = () => {
           </Route>
 
           {/* MAIN PAGE */}
+          {/*Defines what should be found on the URL path / */}
           <Route path="/">
             <div className="list-books">
-            {console.log("SEARCH", searchBooks)}
-
+              {/*Calls the Header component*/}
               <Header />
               <div className="list-books-content">
+                {/*Calls the Header component and updates once a change has been recieved*/}
                 <Shelves books={books} updateBookShelf={updateBookShelf} />
               </div>
               <div className="open-search">
+                {/*Creates the link back to the Search Page*/}
                 <Link to="/search">
                   <button>Add a book</button>
                 </Link>
@@ -128,7 +128,6 @@ const BooksApp = () => {
       </Router>
     </div>
   )
-
 }
-
+/*Exports BooksApp to be luanched*/
 export default BooksApp

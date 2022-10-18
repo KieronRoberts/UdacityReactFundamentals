@@ -1,7 +1,8 @@
 import React from 'react';
+/*Imports Book to be used in this component*/
 import Book from './Book';
 
-
+/*Defines Shelf for use acrross the application*/
 const Shelf = ({ books, title, updateBookShelf }) => {
 
     return (
@@ -20,5 +21,5 @@ const Shelf = ({ books, title, updateBookShelf }) => {
         </div>
     )
 }
-
+/*Exports Shelf for use across the application*/
 export default Shelf;
