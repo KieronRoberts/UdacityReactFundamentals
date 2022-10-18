@@ -161,14 +161,17 @@ button:active {
   font-weight: 400;
   font-family:sans-serif;
   color: #000000;
-}
-
-.book-title {
   margin-top: 10px;
 }
 
+.book-title{
+  font-size: 15px;
+  font-weight: 400;
+}
+
 .book-authors {
-  color: #C9D6E2;
+  font-size: 12px;
+  font-weight: 300;
 }
 
 .book-top {
